@@ -1,0 +1,1 @@
+# KC_Kata1_StringCalc
