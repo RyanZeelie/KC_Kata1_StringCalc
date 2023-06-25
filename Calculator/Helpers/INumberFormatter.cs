@@ -9,6 +9,7 @@ namespace Calculator.Helpers
     public interface INumberFormatter
     {
         List<int> ParseNumbers(string numbers);
-        IEnumerable<string> SplitNumbers(string numbers);
+        IEnumerable<string> SplitNumbers(string numbers, string[] delimiters);
+        IEnumerable<string> GetDelimiters(string stringOfNumbersIncludingDelimiters);
     }
 }

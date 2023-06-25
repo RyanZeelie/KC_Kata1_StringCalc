@@ -9,15 +9,27 @@ namespace Calculator.Helpers
     public class NumberFormatter : INumberFormatter
     {
         private string[] _defaultSeparators = { ",", "\n" };
+        private string[] _delimiterSurroundingStrings = { "//", "[", "][", "]" };
         public List<int> ParseNumbers(string numbers)
         {
-            var splitNumbers = SplitNumbers(numbers);
+            var splitNumbers = SplitNumbers(numbers, _defaultSeparators);
             return splitNumbers.Select(x => int.Parse(x)).ToList(); 
         }
 
-        public IEnumerable<string> SplitNumbers(string numbers)
+        public IEnumerable<string> SplitNumbers(string numbers, string[] delimiters)
         {
-            return numbers.Split(_defaultSeparators, StringSplitOptions.RemoveEmptyEntries);
+            return numbers.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+        }
+
+        public IEnumerable<string> GetDelimiters(string stringOfNumbersIncludingDelimiters)
+        {
+            var delimiters = SplitNumbers(stringOfNumbersIncludingDelimiters, new string[] { _defaultSeparators[1] }).ToList();
+            var formattedDelimiters = delimiters[0].Split(_delimiterSurroundingStrings, StringSplitOptions.RemoveEmptyEntries);
+
+            var allDelimiters = new List<string>(_defaultSeparators);
+            allDelimiters.AddRange(formattedDelimiters);
+
+            return allDelimiters;
         }
     }
 }
