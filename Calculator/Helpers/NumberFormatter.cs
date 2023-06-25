@@ -8,7 +8,7 @@ namespace Calculator.Helpers
 {
     public class NumberFormatter : INumberFormatter
     {
-        private string[] _defaultSeparators = { "," };
+        private string[] _defaultSeparators = { ",", "\n" };
         public List<int> ParseNumbers(string numbers)
         {
             var splitNumbers = SplitNumbers(numbers);

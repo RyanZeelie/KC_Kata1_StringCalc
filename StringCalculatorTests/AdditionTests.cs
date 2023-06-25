@@ -65,5 +65,24 @@ namespace StringCalculatorTests
             //Assert
             Assert.That(result, Is.EqualTo(expectedResult));
         }
+
+        [Test]
+        public void AddMethod_GivenNumbersSeparatedByNewLinesAsString_ShouldAddThemTogether()
+        {
+            // Arrange
+            var testInput = "1\n2";
+            var expectedResult = 3;
+
+            var numberFormatter = Substitute.For<INumberFormatter>();
+            var stringCalculator = new StringCalculator(numberFormatter);
+
+            numberFormatter.ParseNumbers(testInput).Returns(new List<int> { 1, 2 });
+
+            //Act
+            var result = stringCalculator.Add(testInput);
+
+            //Assert
+            Assert.That(result, Is.EqualTo(expectedResult));
+        }
     }
 }
