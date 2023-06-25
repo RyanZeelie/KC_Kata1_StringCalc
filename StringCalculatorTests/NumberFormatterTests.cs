@@ -28,6 +28,20 @@ namespace StringCalculatorTests
         }
 
         [Test]
+        public void ParseNumbersMethod_GivenStringOfTwoNumbersSeparatedByANewLine_ShouldReturnNumbersAsListInt()
+        {
+            // Arrange
+            var testInput = "1\n2";
+            var expectedResult = new List<int>() { 1, 2 };
+
+            //Act
+            var result = _numberFormatter.ParseNumbers(testInput);
+
+            //Assert
+            Assert.That(result, Is.EqualTo(expectedResult));
+        }
+
+        [Test]
         public void SplitNumbersMethod_GivenStringOfTwoNumbersSeparatedByComma_ShouldReturnNumbersAsAnIEnumerableString()
         {
             // Arrange
