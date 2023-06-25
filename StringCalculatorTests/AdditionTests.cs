@@ -42,5 +42,28 @@ namespace StringCalculatorTests
             //Assert
             Assert.That(result, Is.EqualTo(expectedResult));
         }
+
+        [Test]
+        public void AddMethod_GivenAnUnknownAmountOfNumbers_ShouldAddThemTogether()
+        {
+            // Arrange
+            var rndm = new Random();
+            var randomAmountOfNumbersBetween1And20 = Enumerable.Range(1, rndm.Next(20)).ToList();
+
+            var testInput = string.Join(",", randomAmountOfNumbersBetween1And20); 
+
+            var expectedResult = randomAmountOfNumbersBetween1And20.Sum();
+
+            var numberFormatter = Substitute.For<INumberFormatter>();
+            var stringCalculator = new StringCalculator(numberFormatter);
+
+            numberFormatter.ParseNumbers(testInput).Returns(randomAmountOfNumbersBetween1And20);
+
+            //Act
+            var result = stringCalculator.Add(testInput);
+
+            //Assert
+            Assert.That(result, Is.EqualTo(expectedResult));
+        }
     }
 }
