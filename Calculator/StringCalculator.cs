@@ -18,7 +18,7 @@ namespace Calculator
             {
                 return _defaultValue;
             }
-            var t = _numberFormatter.SplitNumbers(numbers);
+
             var result = _numberFormatter.ParseNumbers(numbers);
 
             return result.Sum();
