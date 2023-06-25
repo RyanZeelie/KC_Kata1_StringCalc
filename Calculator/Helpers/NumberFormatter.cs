@@ -12,18 +12,18 @@ namespace Calculator.Helpers
         private string[] _delimiterSurroundingStrings = { "//", "[", "][", "]" };
         public List<int> ParseNumbers(string numbers)
         {
-            var splitNumbers = SplitNumbers(numbers, _defaultSeparators);
+            var splitNumbers = SplitString(numbers, _defaultSeparators);
             return splitNumbers.Select(x => int.Parse(x)).ToList(); 
         }
 
-        public IEnumerable<string> SplitNumbers(string numbers, string[] delimiters)
+        public IEnumerable<string> SplitString(string numbers, string[] delimiters)
         {
             return numbers.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
         }
 
         public IEnumerable<string> GetDelimiters(string stringOfNumbersIncludingDelimiters)
         {
-            var delimiters = SplitNumbers(stringOfNumbersIncludingDelimiters, new string[] { _defaultSeparators[1] }).ToList();
+            var delimiters = SplitString(stringOfNumbersIncludingDelimiters, new string[] { _defaultSeparators[1] }).ToList();
             var formattedDelimiters = delimiters[0].Split(_delimiterSurroundingStrings, StringSplitOptions.RemoveEmptyEntries);
 
             var allDelimiters = new List<string>(_defaultSeparators);

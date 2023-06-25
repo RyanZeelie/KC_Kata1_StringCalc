@@ -36,7 +36,7 @@ namespace StringCalculatorTests
             var defaultDelimiters = new string[] { "," };
 
             //Act
-            var result = _numberFormatter.SplitNumbers(testInput, defaultDelimiters);
+            var result = _numberFormatter.SplitString(testInput, defaultDelimiters);
 
             //Assert
             Assert.That(result, Is.EqualTo(expectedResult));
@@ -51,7 +51,7 @@ namespace StringCalculatorTests
             var defaultDelimiters = new string[] { "\n" };
 
             //Act
-            var result = _numberFormatter.SplitNumbers(testInput, defaultDelimiters);
+            var result = _numberFormatter.SplitString(testInput, defaultDelimiters);
 
             //Assert
             Assert.That(result, Is.EqualTo(expectedResult));
