@@ -20,7 +20,7 @@ namespace StringCalculatorTests
         }
 
         [Test]
-        public void AddMethod_GivenAnEmptyString_ShouldReturnZero()
+        public void GIVEN_AnEmptyString_WHEN_AddMethodCalled_RETURNS_Zero()
         {
             // Arrange
             var testInput = "";
@@ -34,7 +34,7 @@ namespace StringCalculatorTests
         }
 
         [Test]
-        public void AddMethod_GivenAnTwoNumbersAsString_ShouldAddThemTogether()
+        public void GIVEN_TwoNumbersAsString_WHEN_AddMethodCalled_SHOULD_AddNumbersTogether()
         {
             // Arrange
             var testInput = "1,2";
@@ -50,7 +50,7 @@ namespace StringCalculatorTests
         }
 
         [Test]
-        public void AddMethod_GivenAnUnknownAmountOfNumbers_ShouldAddThemTogether()
+        public void GIVEN_AnUnknownAmountOfNumbers_WHEN_AddMethodCalled_SHOULD_AddNumbersTogether()
         {
             // Arrange
             var rndm = new Random();
@@ -67,9 +67,9 @@ namespace StringCalculatorTests
             //Assert
             Assert.That(result, Is.EqualTo(expectedResult));
         }
-
+        
         [Test]
-        public void AddMethod_GivenNumbersSeparatedByNewLinesAsString_ShouldAddThemTogether()
+        public void GIVEN_NumbersSeparatedByNewLines_WHEN_AddMethodCalled_SHOULD_AddNumbersTogether()
         {
             // Arrange
             var testInput = "1\n2";

@@ -14,7 +14,7 @@ namespace StringCalculatorTests
         }
 
         [Test]
-        public void ParseNumbersMethod_GivenStringOfTwoNumbersSeparatedByComma_ShouldReturnNumbersAsListInt()
+        public void GIVEN_StringOfTwoNumbersSeparatedByComma_WHEN_ParsingNumbers_RETURNS_NumbersAsList()
         {
             // Arrange
             var testInput = "1,2";
@@ -28,11 +28,11 @@ namespace StringCalculatorTests
         }
 
         [Test]
-        public void ParseNumbersMethod_GivenStringOfTwoNumbersSeparatedByANewLine_ShouldReturnNumbersAsListInt()
+        public void GIVEN_StringOfTwoNumbersSeparatedByANewLine_WHEN_ParsingNumbers_RETURNS_NumbersAsListInt()
         {
             // Arrange
             var testInput = "1\n2";
-            var expectedResult = new List<int>() { 1, 2 };
+            var expectedResult = new List<int>() { 1, 2,6 };
 
             //Act
             var result = _numberFormatter.ParseNumbers(testInput);
@@ -42,7 +42,7 @@ namespace StringCalculatorTests
         }
 
         [Test]
-        public void ParseNumbersMethod_GivenStringOfTwoNumbersSeparatedByACustomDelimiter_ShouldReturnNumbersAsListInt()
+        public void GIVEN_StringOfTwoNumbersSeparatedByACustomDelimiter_WHEN_ParsingNumbers_RETURNS_NumbersAsListInt()
         {
             // Arrange
             var testInput = "//;\n1;2";
