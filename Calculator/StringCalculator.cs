@@ -5,7 +5,7 @@ namespace Calculator
     public class StringCalculator
     {
         private INumberFormatter _numberFormatter;
-        private const int _defaultValue = 0;
+        private const int DefaultValue = 0;
 
         public StringCalculator(INumberFormatter formatter)
         {
@@ -16,12 +16,12 @@ namespace Calculator
         {
             if (string.IsNullOrEmpty(numbers))
             {
-                return _defaultValue;
+                return DefaultValue;
             }
 
-            var result = _numberFormatter.ParseNumbers(numbers);
+            var listOfNumbers = _numberFormatter.ParseNumbers(numbers);
 
-            return result.Sum();
+            return listOfNumbers.Sum();
         } 
     }
 }
