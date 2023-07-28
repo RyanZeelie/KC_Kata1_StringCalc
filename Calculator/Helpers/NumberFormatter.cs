@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Calculator.Helpers
+﻿namespace Calculator.Helpers
 {
     public class NumberFormatter : INumberFormatter
     {
@@ -29,14 +23,9 @@ namespace Calculator.Helpers
             return stringOfNumbers.Select(x => int.Parse(x)).ToList(); 
         }
 
-        public IEnumerable<string> SplitString(string numbers, IEnumerable<string> delimiters)
+        private IEnumerable<string> GetDelimiters(string stringOfNumbersIncludingDelimiters)
         {
-            return numbers.Split(delimiters.ToArray(), StringSplitOptions.RemoveEmptyEntries);
-        }
-
-        public IEnumerable<string> GetDelimiters(string stringOfNumbersIncludingDelimiters)
-        {
-            var delimitersAndNumbers = SplitString(stringOfNumbersIncludingDelimiters, new string[] { DefaultDelimiters[1] }).ToList();
+            var delimitersAndNumbers = stringOfNumbersIncludingDelimiters.Split(DefaultDelimiters[1], StringSplitOptions.RemoveEmptyEntries);
             var formattedDelimiters = delimitersAndNumbers[0].Split(DelimiterSurroundingStrings, StringSplitOptions.RemoveEmptyEntries);
 
             var allDelimiters = new List<string>(DefaultDelimiters);
@@ -45,7 +34,7 @@ namespace Calculator.Helpers
             return allDelimiters;
         }
 
-        public string GetNumbersWithDelimiters(string stringOfNumbersIncludingDelimiters)
+        private string GetNumbersWithDelimiters(string stringOfNumbersIncludingDelimiters)
         {
             var numbersWithDelimiters =  stringOfNumbersIncludingDelimiters.Split(DefaultDelimiters[1], StringSplitOptions.RemoveEmptyEntries);
 

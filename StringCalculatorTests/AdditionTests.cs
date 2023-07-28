@@ -1,24 +1,33 @@
 using Calculator;
 using Calculator.Helpers;
 using NSubstitute;
+using NUnit.Framework;
 
 namespace StringCalculatorTests
 {
     [TestFixture]
     public class AdditionTests
     {
+        private INumberFormatter _numberFormatter;
+        private StringCalculator _stringCalculator;
+
+
+        [SetUp]
+        public void Setup()
+        {
+            _numberFormatter = Substitute.For<INumberFormatter>();
+            _stringCalculator = new StringCalculator(_numberFormatter);
+        }
+
         [Test]
         public void AddMethod_GivenAnEmptyString_ShouldReturnZero()
         {
             // Arrange
-            var numberFormatter = Substitute.For<INumberFormatter>();
-            var stringCalculator = new StringCalculator(numberFormatter);
-
             var testInput = "";
             var expectedResult = 0;
 
             //Act
-            var result = stringCalculator.Add(testInput);
+            var result = _stringCalculator.Add(testInput);
 
             //Assert
             Assert.That(result, Is.EqualTo(expectedResult));
@@ -31,13 +40,10 @@ namespace StringCalculatorTests
             var testInput = "1,2";
             var expectedResult = 3;
 
-            var numberFormatter = Substitute.For<INumberFormatter>();
-            var stringCalculator = new StringCalculator(numberFormatter);
-
-            numberFormatter.ParseNumbers(testInput).Returns(new List<int> { 1, 2 });
+            _numberFormatter.ParseNumbers(testInput).Returns(new List<int> { 1, 2 });
 
             //Act
-            var result = stringCalculator.Add(testInput);
+            var result = _stringCalculator.Add(testInput);
 
             //Assert
             Assert.That(result, Is.EqualTo(expectedResult));
@@ -51,16 +57,12 @@ namespace StringCalculatorTests
             var randomAmountOfNumbersBetween1And20 = Enumerable.Range(1, rndm.Next(20)).ToList();
 
             var testInput = string.Join(",", randomAmountOfNumbersBetween1And20); 
+            var expectedResult = randomAmountOfNumbersBetween1And20.Sum();;
 
-            var expectedResult = randomAmountOfNumbersBetween1And20.Sum();
-
-            var numberFormatter = Substitute.For<INumberFormatter>();
-            var stringCalculator = new StringCalculator(numberFormatter);
-
-            numberFormatter.ParseNumbers(testInput).Returns(randomAmountOfNumbersBetween1And20);
+            _numberFormatter.ParseNumbers(testInput).Returns(randomAmountOfNumbersBetween1And20);
 
             //Act
-            var result = stringCalculator.Add(testInput);
+            var result = _stringCalculator.Add(testInput);
 
             //Assert
             Assert.That(result, Is.EqualTo(expectedResult));
@@ -73,13 +75,10 @@ namespace StringCalculatorTests
             var testInput = "1\n2";
             var expectedResult = 3;
 
-            var numberFormatter = Substitute.For<INumberFormatter>();
-            var stringCalculator = new StringCalculator(numberFormatter);
-
-            numberFormatter.ParseNumbers(testInput).Returns(new List<int> { 1, 2 });
+            _numberFormatter.ParseNumbers(testInput).Returns(new List<int> { 1, 2 });
 
             //Act
-            var result = stringCalculator.Add(testInput);
+            var result = _stringCalculator.Add(testInput);
 
             //Assert
             Assert.That(result, Is.EqualTo(expectedResult));
