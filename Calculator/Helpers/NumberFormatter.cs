@@ -25,7 +25,7 @@
                 throw new Exception("Negatives are not allowed");
             }
 
-            return stringOfNumbers.Select(x => int.Parse(x)).ToList(); 
+            return stringOfNumbers.Select(x => int.Parse(x)).Where(num => num < 1001).ToList(); 
         }
 
         private IEnumerable<string> GetDelimiters(string stringOfNumbersIncludingDelimiters)
