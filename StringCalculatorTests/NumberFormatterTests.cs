@@ -32,7 +32,7 @@ namespace StringCalculatorTests
         {
             // Arrange
             var testInput = "1\n2";
-            var expectedResult = new List<int>() { 1, 2,6 };
+            var expectedResult = new List<int>() { 1, 2 };
 
             //Act
             var result = _numberFormatter.ParseNumbers(testInput);
@@ -53,6 +53,20 @@ namespace StringCalculatorTests
 
             //Assert
             Assert.That(result, Is.EqualTo(expectedResult));
+        }
+
+        [Test]
+        public void GIVEN_AnegativeNumber_WHEN_ParsingNumbers_THROWS_NewError()
+        {
+            // Arrange
+            var testInput = "1,2,-3,4";
+            var expectedResult = "Negatives are not allowed";
+
+            //Act
+            var exception = Assert.Throws<Exception>(() => _numberFormatter.ParseNumbers(testInput));
+
+            //Assert
+            Assert.That(exception.Message, Is.EqualTo(expectedResult));
         }
     }
 }

@@ -19,7 +19,12 @@
             {
                 stringOfNumbers = numbers.Split(DefaultDelimiters, StringSplitOptions.RemoveEmptyEntries);
             }
-            
+
+            if(stringOfNumbers.Any(x => int.Parse(x) < 0))
+            {
+                throw new Exception("Negatives are not allowed");
+            }
+
             return stringOfNumbers.Select(x => int.Parse(x)).ToList(); 
         }
 
