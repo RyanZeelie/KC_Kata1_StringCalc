@@ -1,6 +1,6 @@
 ﻿namespace Calculator.Helpers
 {
-    public interface INumberFormatter
+    public interface INumberService
     {
         List<int> ParseNumbers(string numbers);
     }

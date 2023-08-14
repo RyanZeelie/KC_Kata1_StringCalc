@@ -1,22 +1,21 @@
 using Calculator;
 using Calculator.Helpers;
 using NSubstitute;
-using NUnit.Framework;
 
 namespace StringCalculatorTests
 {
     [TestFixture]
     public class AdditionTests
     {
-        private INumberFormatter _numberFormatter;
+        private INumberService _numberService;
         private StringCalculator _stringCalculator;
 
 
         [SetUp]
         public void Setup()
         {
-            _numberFormatter = Substitute.For<INumberFormatter>();
-            _stringCalculator = new StringCalculator(_numberFormatter);
+            _numberService = Substitute.For<INumberService>();
+            _stringCalculator = new StringCalculator(_numberService);
         }
 
         [Test]
@@ -40,7 +39,7 @@ namespace StringCalculatorTests
             var testInput = "1,2";
             var expectedResult = 3;
 
-            _numberFormatter.ParseNumbers(testInput).Returns(new List<int> { 1, 2 });
+            _numberService.ParseNumbers(testInput).Returns(new List<int> { 1, 2 });
 
             //Act
             var result = _stringCalculator.Add(testInput);
@@ -59,7 +58,7 @@ namespace StringCalculatorTests
             var testInput = string.Join(",", randomAmountOfNumbersBetween1And20); 
             var expectedResult = randomAmountOfNumbersBetween1And20.Sum();;
 
-            _numberFormatter.ParseNumbers(testInput).Returns(randomAmountOfNumbersBetween1And20);
+            _numberService.ParseNumbers(testInput).Returns(randomAmountOfNumbersBetween1And20);
 
             //Act
             var result = _stringCalculator.Add(testInput);
@@ -75,7 +74,7 @@ namespace StringCalculatorTests
             var testInput = "1\n2";
             var expectedResult = 3;
 
-            _numberFormatter.ParseNumbers(testInput).Returns(new List<int> { 1, 2 });
+            _numberService.ParseNumbers(testInput).Returns(new List<int> { 1, 2 });
 
             //Act
             var result = _stringCalculator.Add(testInput);

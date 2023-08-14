@@ -3,14 +3,14 @@
 namespace StringCalculatorTests
 {
     [TestFixture]
-    public class NumberFormatterTests
+    public class NumberServiceTests
     {
-        private INumberFormatter _numberFormatter;
+        private INumberService _numberService;
 
         [SetUp]
         public void Setup()
         {
-            _numberFormatter = new NumberFormatter();
+            _numberService = new NumberService();
         }
 
         [Test]
@@ -21,7 +21,7 @@ namespace StringCalculatorTests
             var expectedResult = new List<int>() { 1, 2 };
 
             //Act
-            var result = _numberFormatter.ParseNumbers(testInput);
+            var result = _numberService.ParseNumbers(testInput);
 
             //Assert
             Assert.That(result, Is.EqualTo(expectedResult));
@@ -35,7 +35,7 @@ namespace StringCalculatorTests
             var expectedResult = new List<int>() { 1, 2 };
 
             //Act
-            var result = _numberFormatter.ParseNumbers(testInput);
+            var result = _numberService.ParseNumbers(testInput);
 
             //Assert
             Assert.That(result, Is.EqualTo(expectedResult));
@@ -49,7 +49,7 @@ namespace StringCalculatorTests
             var expectedResult = new List<int>() { 1, 2 };
 
             //Act
-            var result = _numberFormatter.ParseNumbers(testInput);
+            var result = _numberService.ParseNumbers(testInput);
 
             //Assert
             Assert.That(result, Is.EqualTo(expectedResult));
@@ -63,7 +63,7 @@ namespace StringCalculatorTests
             var expectedResult = "Negatives are not allowed";
 
             //Act
-            var exception = Assert.Throws<Exception>(() => _numberFormatter.ParseNumbers(testInput));
+            var exception = Assert.Throws<Exception>(() => _numberService.ParseNumbers(testInput));
 
             //Assert
             Assert.That(exception.Message, Is.EqualTo(expectedResult));
@@ -77,7 +77,7 @@ namespace StringCalculatorTests
             var expectedResult = new List<int>() { 1, 2 };
 
             //Act
-            var result = _numberFormatter.ParseNumbers(testInput);
+            var result = _numberService.ParseNumbers(testInput);
 
             //Assert
             Assert.That(result, Is.EqualTo(expectedResult));
@@ -91,7 +91,7 @@ namespace StringCalculatorTests
             var expectedResult = new List<int>() { 1, 2, 3 };
 
             //Act
-            var result = _numberFormatter.ParseNumbers(testInput);
+            var result = _numberService.ParseNumbers(testInput);
 
             //Assert
             Assert.That(result, Is.EqualTo(expectedResult));
@@ -105,7 +105,7 @@ namespace StringCalculatorTests
             var expectedResult = new List<int>() { 1, 2, 3 };
 
             //Act
-            var result = _numberFormatter.ParseNumbers(testInput);
+            var result = _numberService.ParseNumbers(testInput);
 
             //Assert
             Assert.That(result, Is.EqualTo(expectedResult));

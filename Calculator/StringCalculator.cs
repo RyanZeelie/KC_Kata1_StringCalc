@@ -4,10 +4,10 @@ namespace Calculator
 {
     public class StringCalculator
     {
-        private INumberFormatter _numberFormatter;
+        private INumberService _numberFormatter;
         private const int DefaultValue = 0;
 
-        public StringCalculator(INumberFormatter formatter)
+        public StringCalculator(INumberService formatter)
         {
             _numberFormatter = formatter;
         }

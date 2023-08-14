@@ -1,6 +1,6 @@
 ﻿namespace Calculator.Helpers
 {
-    public class NumberFormatter : INumberFormatter
+    public class NumberService : INumberService
     {
         private string[] DefaultDelimiters = { ",", "\n" };
         private string[] DelimiterSurroundingStrings = { "//", "[", "][", "]" };
