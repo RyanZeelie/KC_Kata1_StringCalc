@@ -4,12 +4,12 @@ namespace Calculator
 {
     public class StringCalculator
     {
-        private INumberService _numberFormatter;
+        private readonly INumberService _numberService;
         private const int DefaultValue = 0;
 
         public StringCalculator(INumberService formatter)
         {
-            _numberFormatter = formatter;
+            _numberService = formatter;
         }
 
         public int Add(string numbers)
@@ -19,7 +19,7 @@ namespace Calculator
                 return DefaultValue;
             }
 
-            var listOfNumbers = _numberFormatter.ParseNumbers(numbers);
+            var listOfNumbers = _numberService.ParseNumbers(numbers);
 
             return listOfNumbers.Sum();
         } 
