@@ -1,5 +1,5 @@
 using Calculator;
-using Calculator.Helpers;
+using Calculator.Services;
 using NSubstitute;
 
 namespace StringCalculatorTests

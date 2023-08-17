@@ -1,4 +1,4 @@
-﻿namespace Calculator.Helpers
+﻿namespace Calculator.Services
 {
     public class NumberService : INumberService
     {
@@ -12,8 +12,8 @@
             if (numbers.StartsWith("//"))
             {
                 var delimiters = GetDelimiters(numbers);
-                var numbersWithDelimiters = GetNumbersWithDelimiters(numbers);
-                stringOfNumbers = numbersWithDelimiters.Split(delimiters.ToArray(), StringSplitOptions.RemoveEmptyEntries);
+                var numbersSeperatedByDelimiters = GetNumbersSeperatedByDelimiters(numbers);
+                stringOfNumbers = numbersSeperatedByDelimiters.Split(delimiters.ToArray(), StringSplitOptions.RemoveEmptyEntries);
             }
             else
             {
@@ -39,7 +39,7 @@
             return allDelimiters;
         }
 
-        private string GetNumbersWithDelimiters(string stringOfNumbersIncludingDelimiters)
+        private string GetNumbersSeperatedByDelimiters(string stringOfNumbersIncludingDelimiters)
         {
             var numbersWithDelimiters =  stringOfNumbersIncludingDelimiters.Split(DefaultDelimiters[1], StringSplitOptions.RemoveEmptyEntries);
 
