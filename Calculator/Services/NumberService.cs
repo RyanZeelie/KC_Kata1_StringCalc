@@ -20,10 +20,7 @@
                 stringOfNumbers = numbers.Split(DefaultDelimiters, StringSplitOptions.RemoveEmptyEntries);
             }
 
-            if(stringOfNumbers.Any(x => int.Parse(x) < 0))
-            {
-                throw new Exception("Negatives are not allowed");
-            }
+            CheckForNegativeNumbers(stringOfNumbers);
 
             return stringOfNumbers.Select(x => int.Parse(x)).Where(num => num < 1001).ToList(); 
         }
@@ -44,6 +41,14 @@
             var numbersWithDelimiters =  stringOfNumbersIncludingDelimiters.Split(DefaultDelimiters[1], StringSplitOptions.RemoveEmptyEntries);
 
             return numbersWithDelimiters[1];
+        }
+
+        private void CheckForNegativeNumbers(IEnumerable<string> stringOfNumbers)
+        {
+            if (stringOfNumbers.Any(x => int.Parse(x) < 0))
+            {
+                throw new Exception("Negatives are not allowed");
+            }
         }
     }
 }
