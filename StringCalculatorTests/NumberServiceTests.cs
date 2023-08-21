@@ -110,5 +110,19 @@ namespace StringCalculatorTests
             //Assert
             Assert.That(result, Is.EqualTo(expectedResult));
         }
+
+        [Test]
+        public void GIVEN_ADelimiterTheSameAsTheDelimiterStartString_WHEN_ParsingNumbers_RETRUNS_NumbersAsListInt()
+        {
+            // Arrange
+            var testInput = "////\n1//2//3";
+            var expectedResult = new List<int>() { 1, 2, 3 };
+
+            //Act
+            var result = _numberService.ParseNumbers(testInput);
+
+            //Assert
+            Assert.That(result, Is.EqualTo(expectedResult));
+        }
     }
 }
