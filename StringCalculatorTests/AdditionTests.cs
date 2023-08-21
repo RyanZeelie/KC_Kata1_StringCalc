@@ -11,13 +11,13 @@ namespace StringCalculatorTests
     public class AdditionTests
     {
         private INumberService _numberService;
-        private Calculator Calculator;
+        private Calculator _calculator;
 
         [SetUp]
         public void Setup()
         {
             _numberService = Substitute.For<INumberService>();
-            Calculator = new Calculator(_numberService);
+            _calculator = new Calculator(_numberService);
         }
 
         [Test]
@@ -30,7 +30,21 @@ namespace StringCalculatorTests
             _numberService.ParseNumbers(testInput).Returns(new List<int> { 1, 2 });
 
             //Act
-            var result = Calculator.Add(testInput);
+            var result = _calculator.Add(testInput);
+
+            //Assert
+            Assert.That(result, Is.EqualTo(expectedResult));
+        }
+
+        [Test]
+        public void GIVEN_AnEmptyString_WHEN_AddMethodCalled_RETURNS_Zero()
+        {
+            // Arrange
+            var testInput = "";
+            var expectedResult = 0;
+
+            //Act
+            var result = _calculator.Add(testInput);
 
             //Assert
             Assert.That(result, Is.EqualTo(expectedResult));
