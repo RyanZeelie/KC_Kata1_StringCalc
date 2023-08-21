@@ -6,8 +6,40 @@ using System.Threading.Tasks;
 
 namespace StringCalculator.Services
 {
+
+
     public class NumberService : INumberService
     {
+        private List<string> _delimiters = new List<string>() { ",", "\n" };
+        private string[] _delimiterSurroundingStrings = { "[", "][", "]" };
+        private string[] _stringNumbers;
 
+        public List<int> ParseNumbers(string inputString)
+        {
+            ExtractDelimitersAndNumbers(inputString);
+
+            var parsedNumbers = ValidateAndParseNumbers();
+
+            return parsedNumbers;
+        }
+
+        private void ExtractDelimitersAndNumbers(string inputString)
+        {
+            _stringNumbers = inputString.Split(_delimiters.ToArray(), StringSplitOptions.RemoveEmptyEntries);
+        }
+
+        private List<int> ValidateAndParseNumbers()
+        {
+            var listOfIntergerNumbers = new List<int>();
+
+            foreach (var number in _stringNumbers)
+            {
+                var parsedNumber = int.Parse(number);
+
+                listOfIntergerNumbers.Add(parsedNumber);
+            }
+
+            return listOfIntergerNumbers;
+        }
     }
 }
