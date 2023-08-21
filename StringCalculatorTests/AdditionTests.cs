@@ -5,14 +5,14 @@ namespace StringCalculatorTests
     [TestFixture]
     public class AdditionTests
     {
-        private INumberService _numberService;
+        private INumberService _mockNumberService;
         private Calculator _calculator;
 
         [SetUp]
         public void Setup()
         {
-            _numberService = Substitute.For<INumberService>();
-            _calculator = new Calculator(_numberService);
+            _mockNumberService = Substitute.For<INumberService>();
+            _calculator = new Calculator(_mockNumberService);
         }
 
         [Test]
@@ -22,7 +22,7 @@ namespace StringCalculatorTests
             var testInput = "1,2";
             var expectedResult = 3;
 
-            _numberService.ParseNumbers(testInput).Returns(new List<int> { 1, 2 });
+            _mockNumberService.ParseNumbers(testInput).Returns(new List<int> { 1, 2 });
 
             //Act
             var result = _calculator.Add(testInput);
@@ -56,7 +56,7 @@ namespace StringCalculatorTests
 
             var expectedResult = randomAmountOfNumbersBetween1And20.Sum();
 
-            _numberService.ParseNumbers(testInput).Returns(randomAmountOfNumbersBetween1And20);
+            _mockNumberService.ParseNumbers(testInput).Returns(randomAmountOfNumbersBetween1And20);
 
             //Act
             var result = _calculator.Add(testInput);

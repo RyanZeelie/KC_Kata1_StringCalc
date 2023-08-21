@@ -11,6 +11,7 @@ namespace StringCalculator
         {
             _numberService = numberService;
         }
+
         public int Add(string numbers)
         {
             if (string.IsNullOrEmpty(numbers))

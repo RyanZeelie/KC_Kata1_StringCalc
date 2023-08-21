@@ -1,5 +1,4 @@
-﻿
-namespace StringCalculatorTests
+﻿namespace StringCalculatorTests
 {
     [TestFixture]
     public class NumberServiceTests
@@ -53,7 +52,6 @@ namespace StringCalculatorTests
             //Assert
             Assert.That(result, Is.EqualTo(expectedResult));
         }
-
 
         [Test]
         public void GIVEN_AnegativeNumber_WHEN_ParsingNumbers_THROWS_NewError()
