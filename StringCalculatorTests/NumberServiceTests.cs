@@ -53,5 +53,20 @@ namespace StringCalculatorTests
             //Assert
             Assert.That(result, Is.EqualTo(expectedResult));
         }
+
+
+        [Test]
+        public void GIVEN_AnegativeNumber_WHEN_ParsingNumbers_THROWS_NewError()
+        {
+            // Arrange
+            var testInput = "1,2,-3,4";
+            var expectedResult = "Negatives are not allowed";
+
+            //Act
+            var exception = Assert.Throws<Exception>(() => _numberService.ParseNumbers(testInput));
+
+            //Assert
+            Assert.That(exception.Message, Is.EqualTo(expectedResult));
+        }
     }
 }

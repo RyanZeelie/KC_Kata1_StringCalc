@@ -53,6 +53,11 @@ namespace StringCalculator.Services
             {
                 var parsedNumber = int.Parse(number);
 
+                if (parsedNumber < 0)
+                {
+                    throw new Exception("Negatives are not allowed");
+                }
+
                 listOfIntergerNumbers.Add(parsedNumber);
             }
 
