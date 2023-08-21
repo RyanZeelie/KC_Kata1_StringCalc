@@ -14,6 +14,8 @@ namespace StringCalculator.Services
         private string[] _delimiterSurroundingStrings = { "[", "][", "]" };
         private string[] _stringNumbers;
 
+        private const string DelimiterStartString = "//";
+
         public List<int> ParseNumbers(string inputString)
         {
             ExtractDelimitersAndNumbers(inputString);
@@ -25,7 +27,22 @@ namespace StringCalculator.Services
 
         private void ExtractDelimitersAndNumbers(string inputString)
         {
-            _stringNumbers = inputString.Split(_delimiters.ToArray(), StringSplitOptions.RemoveEmptyEntries);
+            if (inputString.StartsWith(DelimiterStartString))
+            {
+                inputString = inputString.Remove(0, 2);
+
+                var delimtersAndNumbers = inputString.Split(_delimiters[1], StringSplitOptions.RemoveEmptyEntries);
+
+                var allDelimiters = delimtersAndNumbers[0].Split(_delimiterSurroundingStrings, StringSplitOptions.RemoveEmptyEntries);
+
+                _delimiters.AddRange(allDelimiters);
+
+                _stringNumbers = delimtersAndNumbers[1].Split(_delimiters.ToArray(), StringSplitOptions.RemoveEmptyEntries);
+            }
+            else
+            {
+                _stringNumbers = inputString.Split(_delimiters.ToArray(), StringSplitOptions.RemoveEmptyEntries);
+            }
         }
 
         private List<int> ValidateAndParseNumbers()
