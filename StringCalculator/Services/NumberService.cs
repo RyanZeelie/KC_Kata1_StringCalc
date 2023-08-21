@@ -15,6 +15,7 @@ namespace StringCalculator.Services
         private string[] _stringNumbers;
 
         private const string DelimiterStartString = "//";
+        private const int MaximumNumber = 1000;
 
         public List<int> ParseNumbers(string inputString)
         {
@@ -57,8 +58,10 @@ namespace StringCalculator.Services
                 {
                     throw new Exception("Negatives are not allowed");
                 }
-
-                listOfIntergerNumbers.Add(parsedNumber);
+                else if (!(parsedNumber > MaximumNumber))
+                {
+                    listOfIntergerNumbers.Add(parsedNumber);
+                }
             }
 
             return listOfIntergerNumbers;

@@ -68,5 +68,19 @@ namespace StringCalculatorTests
             //Assert
             Assert.That(exception.Message, Is.EqualTo(expectedResult));
         }
+
+        [Test]
+        public void GIVEN_AnumberGreaterThan1000_WHEN_ParsingNumbers_RETRUNS_ListOfNumbersExcludingThoseGreaterThan1000()
+        {
+            // Arrange
+            var testInput = "1,1001,2";
+            var expectedResult = new List<int>() { 1, 2 };
+
+            //Act
+            var result = _numberService.ParseNumbers(testInput);
+
+            //Assert
+            Assert.That(result, Is.EqualTo(expectedResult));
+        }
     }
 }
