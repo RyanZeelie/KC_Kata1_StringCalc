@@ -22,22 +22,27 @@
 
         private void ExtractDelimitersAndNumbers(string inputString)
         {
+            var seperatorIndex = GetSeperatorIndex(inputString);
+
             if (inputString.StartsWith(DelimiterStartString))
             {
-                inputString = inputString.Substring(DelimiterIndicatorIndex);
+                inputString = inputString[DelimiterIndicatorIndex..];
 
-                var delimtersAndNumbers = inputString.Split(DelimiterAndNumberSeperator, StringSplitOptions.RemoveEmptyEntries);
-
-                var allDelimiters = delimtersAndNumbers[0].Split(_delimiterSurroundingStrings, StringSplitOptions.RemoveEmptyEntries);
+                var allDelimiters = inputString[..(seperatorIndex - 1)].Split(_delimiterSurroundingStrings, StringSplitOptions.RemoveEmptyEntries);
 
                 _delimiters.AddRange(allDelimiters);
 
-                _stringNumbers = delimtersAndNumbers[1].Split(_delimiters.ToArray(), StringSplitOptions.RemoveEmptyEntries);
+                _stringNumbers = inputString[seperatorIndex..].Split(_delimiters.ToArray(), StringSplitOptions.RemoveEmptyEntries);
             }
             else
             {
                 _stringNumbers = inputString.Split(_delimiters.ToArray(), StringSplitOptions.RemoveEmptyEntries);
             }
+        }
+
+        private int GetSeperatorIndex(string inputString)
+        {
+            return inputString.IndexOf(DelimiterAndNumberSeperator) - 1;
         }
 
         private List<int> ValidateAndParseNumbers()
